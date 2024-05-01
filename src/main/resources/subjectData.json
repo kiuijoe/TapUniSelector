@@ -1,0 +1,30 @@
+{
+  "subjects": [
+    "english",
+    "math",
+    "science",
+    "japanese",
+    "geoHist"
+  ],
+  "globalMinScore": 350,
+  "specialties": [
+    {
+      "key": "s",
+      "name": "science",
+      "minPass": 160,
+      "subjects": [
+        "math",
+        "science"
+      ]
+    },
+    {
+      "key": "l",
+      "name": "humanities",
+      "minPass": 160,
+      "subjects": [
+        "japanese",
+        "geoHist"
+      ]
+    }
+  ]
+}
