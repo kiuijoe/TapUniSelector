@@ -1,7 +1,3 @@
 package com.joepratt.model;
 
-public class SubjectData {
-    public String[] subjects;
-    public int globalMinScore;
-    public Specialty[] specialties;
-}
+public record SubjectData(String[] subjects, int globalMinScore, Specialty[] specialties) {}

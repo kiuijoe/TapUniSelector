@@ -1,8 +1,3 @@
 package com.joepratt.model;
 
-public class Specialty {
-    public String key;
-    public String name;
-    public int minPass;
-    public String[] subjects;
-}
+public record Specialty(String key, String name, int minPass, String[] subjects) {}

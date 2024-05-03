@@ -37,17 +37,17 @@ public class TapUniSelectorServices {
     private Student processLine(String line, SubjectData subjectData) {
         String[] arr = line.split(" ");
         String specialisation = arr[0];
-        if (arr.length != subjectData.subjects.length + 1) {
+        if (arr.length != subjectData.subjects().length + 1) {
             throw new InputMismatchException("Input line invalid: '" + line + "'");
         }
 
         SortedMap<String, Integer> subjects = new TreeMap<>();
-        for (int i = 0; i < subjectData.subjects.length; i++) {
+        for (int i = 0; i < subjectData.subjects().length; i++) {
             int subjectScore = Integer.parseInt(arr[i+1]);
             if (subjectScore < 0) {
                 throw new InputMismatchException("Student score invalid: '" + subjectScore + "'");
             }
-            String subjectTitle = subjectData.subjects[i];
+            String subjectTitle = subjectData.subjects()[i];
             subjects.put(subjectTitle, subjectScore);
         }
 
@@ -56,19 +56,19 @@ public class TapUniSelectorServices {
 
     // Determine whether student has passed based on the subject data
     private boolean hasPassed(Student student, SubjectData subjectData) {
-        for (Specialty specialty : subjectData.specialties) {
-            if (specialty.key.equals(student.specialisation)) {
+        for (Specialty specialty : subjectData.specialties()) {
+            if (specialty.key().equals(student.specialisation)) {
                 int total = student.subjects.values()
                         .stream()
                         .mapToInt(Integer::intValue)
                         .sum();
 
-                int specialtyScore = Arrays.stream(specialty.subjects)
+                int specialtyScore = Arrays.stream(specialty.subjects())
                         .map(student.subjects::get)
                         .mapToInt(Integer::intValue)
                         .sum();
 
-                return  total >= subjectData.globalMinScore && specialtyScore >= specialty.minPass;
+                return  total >= subjectData.globalMinScore() && specialtyScore >= specialty.minPass();
             }
         }
         throw new InputMismatchException("Student specialisation invalid: '" + student.specialisation + "'");
