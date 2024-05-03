@@ -77,7 +77,7 @@ java -jar [path to jar file] < [path to .txt input file]
 e.g.
 ```sh
 # from project root
-java -jar target/TapUniSelector-1.0-SNAPSHOT-jar-with-dependencies.jar < src/main/resources/ex2Input.txt
+java -jar target/TapUniSelector-1.0-SNAPSHOT-jar-with-dependencies.jar < src/test/resources/ex2Input.txt
 ```
 
 ## How to run tests

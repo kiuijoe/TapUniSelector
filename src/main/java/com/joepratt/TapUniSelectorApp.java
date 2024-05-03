@@ -15,7 +15,8 @@ public class TapUniSelectorApp {
     public static void main(String[] args) throws IOException, IllegalArgumentException {
         TapUniSelectorServices selector = new TapUniSelectorServices();
         SubjectData subjectData = extractSubjectData();
-        System.out.println(selector.getAmtOfPass(subjectData, new InputStreamReader(System.in)));
+        long amtPass = selector.getAmtOfPass(subjectData, new InputStreamReader(System.in));
+        System.out.println(amtPass + "\n");
     }
 
     private static SubjectData extractSubjectData() throws IOException {
