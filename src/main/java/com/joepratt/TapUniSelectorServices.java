@@ -6,10 +6,7 @@ import com.joepratt.model.SubjectData;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.*;
 
 public class TapUniSelectorServices {
     /**
@@ -41,7 +38,7 @@ public class TapUniSelectorServices {
             throw new InputMismatchException("Input line invalid: '" + line + "'");
         }
 
-        SortedMap<String, Integer> subjects = new TreeMap<>();
+        Map<String, Integer> subjects = new HashMap<>();
         for (int i = 0; i < subjectData.subjects().length; i++) {
             int subjectScore = Integer.parseInt(arr[i+1]);
             if (subjectScore < 0) {
@@ -58,13 +55,13 @@ public class TapUniSelectorServices {
     private boolean hasPassed(Student student, SubjectData subjectData) {
         for (Specialty specialty : subjectData.specialties()) {
             if (specialty.key().equals(student.specialisation)) {
-                int total = student.subjects.values()
+                int total = student.subjectScores.values()
                         .stream()
                         .mapToInt(Integer::intValue)
                         .sum();
 
                 int specialtyScore = Arrays.stream(specialty.subjects())
-                        .map(student.subjects::get)
+                        .map(student.subjectScores::get)
                         .mapToInt(Integer::intValue)
                         .sum();
 
@@ -74,5 +71,5 @@ public class TapUniSelectorServices {
         throw new InputMismatchException("Student specialisation invalid: '" + student.specialisation + "'");
     }
 
-    private record Student(String specialisation, SortedMap<String, Integer> subjects) {}
+    private record Student(String specialisation, Map<String, Integer> subjectScores) {}
 }
