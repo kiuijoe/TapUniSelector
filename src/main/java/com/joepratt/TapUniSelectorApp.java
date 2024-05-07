@@ -12,7 +12,7 @@ import java.nio.file.*;
 public class TapUniSelectorApp {
     private static final String COURSES_FILE = "subjectData.json";
 
-    public static void main(String[] args) throws IOException, IllegalArgumentException {
+    public static void main(String[] args) throws IOException {
         TapUniSelectorServices selector = new TapUniSelectorServices();
         SubjectData subjectData = extractSubjectData();
         long amtPass = selector.getAmtOfPass(subjectData, new InputStreamReader(System.in));

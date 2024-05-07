@@ -53,6 +53,8 @@ public class TapUniSelectorServices {
 
     // Determine whether student has passed based on the subject data
     private boolean hasPassed(Student student, SubjectData subjectData) {
+        // subjectData.specialties() could be a hashmap to eliminate this loop. Keeping it simple as the amount of
+        // specialties is likely minimal.
         for (Specialty specialty : subjectData.specialties()) {
             if (specialty.key().equals(student.specialisation)) {
                 int total = student.subjectScores.values()
